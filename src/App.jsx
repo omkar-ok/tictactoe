@@ -7,6 +7,6 @@ export default () => (
   <div className="app">
     <h1>Tic Tac Toe</h1>
     <Board/>
-    <p>Hard to get more minimal than this React app.</p>
+    <p>Hard to get more as minimal than this React app.</p>
   </div>
 );

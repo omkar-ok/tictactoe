@@ -1,12 +1,17 @@
-import React from 'react'
-import './styles/Square.style.css'
+import React from 'react';
+import './styles/Square.style.css';
 
-const Square = (props) => {
+const Square = props => {
+  // console.log(props)
   return (
-    
-      <button type='button' className='btn square'>{props.val}</button>
-    
-  )
-}
+    <button
+      type="button"
+      className="btn square"
+      onClick={ props.myClickEvent}
+    >
+      {props.val}
+    </button>
+  );
+};
 
-export default Square
+export default Square;
