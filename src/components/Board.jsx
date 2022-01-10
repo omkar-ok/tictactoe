@@ -1,33 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Square from './Square';
 
-const Board = () => {
-  const [board, setBoard] = useState(Array(9).fill(null));
-  const [who, setWho] = useState(true);
-  // console.log(board);
-
-  const ClickEvent = position => {
-    // console.log('click event call', position);
-    // console.log(board);
-    if (board[position] !== null) {
-      alert('You can not override previous moves');
-    } else {
-      setBoard(() => {
-        let arr = board.map((value, pos) => {
-          if (value === null && pos === position) {
-            setWho(!who);
-            return who ? "X" : "O" ;
-          } else {
-            return value;
-          }
-        });
-        // console.log(arr);
-        return arr;
-      });
-    }
-    console.log(board);
-  };
-
+const Board = ({board, ClickEvent}) => {
+  
   return (
     <div>
       <div className="board">
@@ -92,17 +67,6 @@ const Board = () => {
           />
         </div>
       </div>
-      <br />
-      <br />
-      <hr />
-      <br />
-      <button className='clearbutton'
-        onClick={() => {
-          setBoard(Array(9).fill(null));
-        }}
-      >
-      clear
-      </button>
     </div>
   );
 };
