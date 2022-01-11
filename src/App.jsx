@@ -4,6 +4,7 @@ import Board from './components/Board';
 import calculateWinner from './helper';
 import './components/styles/root.scss';
 import History from './components/History';
+import StutusMessage from './components/StatusMessage'
 
 const App = () => {
   const [history, setHistory] = useState([
@@ -15,16 +16,19 @@ const App = () => {
   // const [board, setBoard] = useState(Array(9).fill(null));
   // const [who, setWho] = useState(true);
   const winner = calculateWinner(current.board);
-  const message =
-    winner !== null
-      ? `Winner is ${winner}`
-      : `Next player is ${current.who ? 'X' : 'O'}`;
+  const tied = current.board.every( (value)=> value )
+  // const message =
+  //   winner !== null
+  //     ? `Winner is ${winner}`
+  //     : `Next player is ${current.who ? 'X' : 'O'}`;
 
   const ClickEvent = position => {
     if (winner !== null) {
       alert('Player  ' + winner + '  is Winner');
-    } else if (current.board[position] !== null) {
+    } else if (current.board[position] !== null && !tied) {
       alert('You can not override previous moves');
+    }else if( tied ){
+      alert('Game tied, Restart the game')
     } else {
       setHistory(() => {
         const last = history[history.length - 1];
@@ -51,7 +55,7 @@ const App = () => {
   return (
     <div className="app">
       <h1>Tic Tac Toe</h1>
-      <h3> {message} </h3>
+      <StutusMessage winner={winner} current={current} tied={tied} />
       <Board board={current.board} ClickEvent={ClickEvent} />
       <br />
       <br />
@@ -65,7 +69,7 @@ const App = () => {
             setCurrentMove(0);
           }}
         >
-          clear
+          restart
         </button>
         <button
           className="clearbutton"
@@ -93,7 +97,7 @@ const App = () => {
         </button>
       </div>
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
-      <p>Hard to get more as minimal than this React app.</p>
+      
     </div>
   );
 };
