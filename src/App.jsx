@@ -11,11 +11,13 @@ const App = () => {
     { board: Array(9).fill(null), who: true },
   ]);
   const [currentMove, setCurrentMove] = useState(0);
-
+  //const [helperIndex, setHelperIndex] = useState(0);
   const current = history[currentMove];
   // const [board, setBoard] = useState(Array(9).fill(null));
   // const [who, setWho] = useState(true);
-  const winner = calculateWinner(current.board);
+  console.log(calculateWinner(current.board))
+  const {winner, winningSquares} = calculateWinner(current.board);
+  console.log(winner, winningSquares)
   const tied = current.board.every( (value)=> value )
   // const message =
   //   winner !== null
@@ -23,6 +25,7 @@ const App = () => {
   //     : `Next player is ${current.who ? 'X' : 'O'}`;
 
   const ClickEvent = position => {
+    //setHistory(history.slice(0, helperIndex))
     if (winner !== null) {
       alert('Player  ' + winner + '  is Winner');
     } else if (current.board[position] !== null && !tied) {
@@ -50,13 +53,14 @@ const App = () => {
 
   const moveTo = move => {
     setCurrentMove(move);
+    //setHelperIndex(move);
   };
 
   return (
     <div className="app">
       <h1>Tic Tac Toe</h1>
       <StutusMessage winner={winner} current={current} tied={tied} />
-      <Board board={current.board} ClickEvent={ClickEvent} />
+      <Board board={current.board} ClickEvent={ClickEvent} winningSquares={winningSquares}/>
       <br />
       <br />
       <hr />
