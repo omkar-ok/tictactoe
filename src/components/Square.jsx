@@ -6,9 +6,9 @@ const Square = props => {
   return (
     <button
       type="button"
-      className="btn square"
+      className={`square ${props.isWinningSquare ? 'winning' : ''} ${props.val ==='X' ? 'text-green' : 'text-orange'}`}
       onClick={ props.myClickEvent}
-      style={{fontWeight : props.isWinningSquare ? "bold" : "normal"}}
+      // style={{fontWeight : props.isWinningSquare ? "bold" : "normal"}}
     >
       {props.val}
     </button>

@@ -1,15 +1,38 @@
-import React from 'react'
+import React from 'react';
 
-const StatusMessage = ({winner, current, tied }) => {
+const StatusMessage = ({ winner, current, tied }) => {
   return (
     <div>
-      <h3>
-        {winner && `Winner is ${winner}`}
-        {!winner && !tied && `Next player is ${current.who ? 'X' : 'O' }`}
-        {tied && `X and O tied`}
-      </h3>
+      <div className="status-message">
+        {winner && (
+          <>
+            {' '}
+            Winner is{' '}
+            <span className={winner === 'X' ? 'text-green' : 'text-orange'}>
+              {' '}
+              ${winner}
+            </span>{' '}
+          </>
+        )}
+        {!winner && !tied && (
+          <>
+            {' '}
+            Next player is{' '}
+            <span className={current.who ? 'text-green' : 'text-orange'}>
+              {' '}
+              {current.who ? 'X' : 'O'}{' '}
+            </span>
+          </>
+        )}
+        {tied && (
+          <>
+            <span className="text-green">X</span> and{' '}
+            <span className="text-orange"> O</span> tied{' '}
+          </>
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default StatusMessage
+export default StatusMessage;
