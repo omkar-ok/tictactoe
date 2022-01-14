@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "vite",
+    "start-host": "vite --host 0.0.0.0",
     "build": "vite build",
     "lint": "eslint src/**/*.js",
     "format": "prettier --write src/**/*.js",

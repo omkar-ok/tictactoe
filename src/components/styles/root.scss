@@ -233,3 +233,14 @@ button {
 hr{
   width: 50%;
 }
+
+.creadit-details{
+  font-size: 10px;
+  align-self: baseline;
+  margin: 50px;
+
+  a{
+    color: $green;
+    text-decoration: none;
+  }
+}
